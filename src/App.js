@@ -4,8 +4,8 @@ import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-export const URL=process.env.SERVER_URL
-console.log(URL)
+export const URL=process.env.SERVER_URL;
+
 
 function App() {
 
