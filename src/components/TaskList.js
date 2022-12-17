@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import loadingImg from "../assets/loader.gif";
 import { FaFontAwesomeFlag } from "react-icons/fa";
-import URL from '../App'
+import {URL} from '../App'
 
 
 
@@ -38,7 +38,7 @@ const TaskList = () => {
       return toast.error("Task name can not be empty");
     }
     try {
-      await axios.post(`http://localhost:10000/api/tasks`, task);
+      await axios.post(`${URL}/api/tasks`, task);
       toast.success("Task added successfully!");
       setTask((prevTask) => {
         return { ...prevTask, taskName: "" };
@@ -55,7 +55,7 @@ const TaskList = () => {
 
     setIsLoading(true);
     try {
-      await axios.get(`http://localhost:10000/api/tasks`).then((response) => {
+      await axios.get(`${URL}/api/tasks`).then((response) => {
         setTasks(response.data);
         setIsLoading(false);
       });
@@ -67,7 +67,7 @@ const TaskList = () => {
   // Delete a task
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:10000/api/tasks/${id}`);
+      await axios.delete(`${URL}/api/tasks/${id}`);
       toast.success("Task deleted successfuly!");
       getTasks();
     } catch (error) {
@@ -107,7 +107,7 @@ const TaskList = () => {
     }
 
     try {
-      await axios.put(`http://localhost:10000/api/tasks/${taskId}`, task);
+      await axios.put(`${URL}/api/tasks/${taskId}`, task);
       setIsEditing(false);
       setTask({ ...task, taskName: "" });
       getTasks();
@@ -125,7 +125,7 @@ const TaskList = () => {
     };
 
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${task._id}`, newTask);
+      await axios.put(`${URL}/api/tasks/${task._id}`, newTask);
       getTasks();
     } catch (error) {
       toast.error(error.message);
